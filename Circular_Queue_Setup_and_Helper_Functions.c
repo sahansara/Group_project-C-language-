@@ -69,7 +69,7 @@ char getCharAt(CircularQueue *q, int idx) {
     idx = (q->front + idx) % QUEUE_SIZE;
     return q->data[idx];
 }
-=======
+
 
 // This part do the actual encryption and decryption using the circular queue.
 
@@ -150,7 +150,7 @@ int main() {
     printf("Enter shift key : ");
     scanf("%d", &shift);
 
-    printf("*\n");
+    printf("**************************\n");
 
     if (mode == 'E' || mode == 'e') {
         encrypt(message, shift, result);
