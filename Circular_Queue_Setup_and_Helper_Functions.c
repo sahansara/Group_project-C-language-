@@ -69,3 +69,37 @@ char getCharAt(CircularQueue *q, int idx) {
     idx = (q->front + idx) % QUEUE_SIZE;
     return q->data[idx];
 }
+
+// This part handles user input and output, and calls the encryption/decryption functions.
+
+int main() {
+    char message[MAX_TEXT];
+    char result[MAX_TEXT];
+    char mode;
+    int shift;
+
+    printf("Encryption (E) or Decryption (D)?: ");
+    scanf(" %c", &mode);
+    while (getchar() != '\n'); // Clear buffer
+
+    printf("Enter your message: ");
+    fgets(message, MAX_TEXT, stdin);
+    message[strcspn(message, "\n")] = '\0'; // Remove newline
+
+    printf("Enter shift key : ");
+    scanf("%d", &shift);
+
+    printf("*\n");
+
+    if (mode == 'E' || mode == 'e') {
+        encrypt(message, shift, result);
+        printf("Encrypted Message: %s\n", result);
+    } else if (mode == 'D' || mode == 'd') {
+        decrypt(message, shift, result);
+        printf("Original Message: %s\n", result);
+    } else {
+        printf("Invalid option.\n");
+    }
+
+    return 0;
+}
