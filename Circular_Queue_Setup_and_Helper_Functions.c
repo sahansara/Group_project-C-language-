@@ -69,6 +69,67 @@ char getCharAt(CircularQueue *q, int idx) {
     idx = (q->front + idx) % QUEUE_SIZE;
     return q->data[idx];
 }
+=======
+
+// This part do the actual encryption and decryption using the circular queue.
+
+// Encrypt the messages using the queue and  shift key that user enter.
+void encrypt(char message[], int shift, char result[]) {
+    CircularQueue orig, rotated;
+    initQueue(&orig);
+    initQueue(&rotated);
+    rotateQueue(&rotated, shift);
+
+    int len = strlen(message);
+    for (int i = 0; i < len; i++) {
+        char ch = message[i];
+        if (isupper(ch)) {
+            int idx = getIndex(&orig, ch);
+            if (idx != -1)
+                result[i] = getCharAt(&rotated, idx);
+            else
+                result[i] = ch;
+        } else if (islower(ch)) {
+            int idx = getIndex(&orig, toupper(ch));
+            if (idx != -1)
+                result[i] = tolower(getCharAt(&rotated, idx));
+            else
+                result[i] = ch;
+        } else {
+            result[i] = ch;
+        }
+    }
+    result[len] = '\0';
+}
+
+// Decrypt the message using the queue and the shift key.
+void decrypt(char message[], int shift, char result[]) {
+    CircularQueue orig, rotated;
+    initQueue(&orig);
+    initQueue(&rotated);
+    rotateQueue(&rotated, shift);
+
+    int len = strlen(message);
+    for (int i = 0; i < len; i++) {
+        char ch = message[i];
+        if (isupper(ch)) {
+            int idx = getIndex(&rotated, ch);
+            if (idx != -1)
+                result[i] = getCharAt(&orig, idx);
+            else
+                result[i] = ch;
+        } else if (islower(ch)) {
+            int idx = getIndex(&rotated, toupper(ch));
+            if (idx != -1)
+                result[i] = tolower(getCharAt(&orig, idx));
+            else
+                result[i] = ch;
+        } else {
+            result[i] = ch;
+        }
+    }
+    result[len] = '\0';
+}
 
 // This part handles user input and output, and calls the encryption/decryption functions.
 
