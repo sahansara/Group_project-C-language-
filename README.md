@@ -16,8 +16,8 @@ A simple Caesar Cipher encryption and decryption program written in C, using a c
 | Part | Description                             | Assigned To       |
 | ---- | --------------------------------------- | ----------------- |
 | 1️⃣  | Circular Queue Setup & Helper Functions | `W.K.V Sahansara` |
-| 2️⃣  | Encryption & Decryption Functions       | `[Name 2]`        |
-| 3️⃣  | Main Program & User Interaction         | `[Name 3]`        |
+| 2️⃣  | Encryption & Decryption Functions       | `I.G.P.L.Inguruwaththa` |
+| 3️⃣  | Main Program & User Interaction         | `W.A.R.P.Wickramasinghe  `|
 
 
 🚀 How to Run the Program
